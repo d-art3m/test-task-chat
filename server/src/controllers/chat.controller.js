@@ -1,4 +1,5 @@
 import Chat from '../models/Chat.js';
+import Message from '../models/Message.js';
 
 export const getChats = async (req, res) => {
   try {
@@ -62,7 +63,9 @@ export const removeChat = async (req, res) => {
       return res.status(404).json({ error: 'Chat not found' });
     }
 
-    res.status(200).json( deletedChat);
+    await Message.deleteMany({ chatId: id });
+
+    res.status(200).json(deletedChat);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
