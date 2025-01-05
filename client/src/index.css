@@ -157,9 +157,16 @@ body {
   padding: 0.5rem;
   overflow-wrap: anywhere;
   border-radius: 1rem;
+}
+
+.outgoing-message {
   background-color: var(--primary-color);
 }
 
+.incoming-message {
+  background-color: var(--primary-text-color);
+  color: var(--bg-color);
+}
 
 .new-message-wrapper {
   padding: 1rem;

@@ -12,7 +12,7 @@ function MessageList() {
 
   useEffect(() => {
     if (activeChat) {
-      fetchMessages(activeChat);
+      fetchMessages(activeChat._id);
     }
   }, [fetchMessages, activeChat]);
 

@@ -3,6 +3,7 @@ import useChat from '../store/useChat';
 import useMessage from '../store/useMessage';
 import { MESSAGE_TYPES } from '../constants/messageTypes';
 import { getRandomQuote } from '../utils/quoteService';
+import { toast } from 'react-toastify';
 
 function NewMessage() {
   const messageInput = useRef(null);
@@ -17,7 +18,7 @@ function NewMessage() {
     if (!messageText) return;
     messageInput.current.value = '';
 
-    sendMessage(activeChat, {
+    sendMessage(activeChat._id, {
       text: messageText,
       type: MESSAGE_TYPES.OUTGOING,
     });
@@ -25,10 +26,13 @@ function NewMessage() {
     setTimeout(async () => {
       const randomQuote = await getRandomQuote();
 
-      sendMessage(activeChat, {
+      sendMessage(activeChat._id, {
         text: randomQuote,
         type: MESSAGE_TYPES.INCOMING,
       });
+
+      toast(randomQuote);
+
     }, 3000);
   };
 

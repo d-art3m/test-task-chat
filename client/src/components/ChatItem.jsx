@@ -4,8 +4,9 @@ import { MdEdit } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
 import ChatDialog from './ChatDialog';
 import useChat from '../store/useChat';
+import { format } from 'date-fns';
 
-function ChatItem({ _id, firstName, lastName }) {
+function ChatItem({ _id, firstName, lastName, updatedAt }) {
   const fullName = `${firstName} ${lastName}`;
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -17,15 +18,14 @@ function ChatItem({ _id, firstName, lastName }) {
 
   return (
     <>
-      <div className="chat-item" onClick={() => setActiveChat(_id)}>
+      <div className="chat-item" onClick={() => setActiveChat({ _id, firstName, lastName })}>
         <div className="avatar">
           <FaUser />
         </div>
         <div className="chat-item-content">
           <div>{fullName}</div>
-          <div>last message</div>
         </div>
-        <div className="chat-item-date">05.01.25</div>
+        <div className="chat-item-date">{format(new Date(updatedAt), 'MMM d, yyyy')}</div>
         <div className="chat-item-buttons">
           <button className="chat-item-btn" onClick={openDialog}>
             <MdEdit />

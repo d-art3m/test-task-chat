@@ -57,7 +57,7 @@ const useChat = create(set => ({
     }
   },
 
-  setActiveChat: chatId => set({ activeChat: chatId }),
+  setActiveChat: chat => set({ activeChat: chat }),
 }));
 
 export default useChat;
