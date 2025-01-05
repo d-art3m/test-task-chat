@@ -56,6 +56,8 @@ const useChat = create(set => ({
       set({ error: errorMessage, loading: false });
     }
   },
+
+  setActiveChat: chatId => set({ activeChat: chatId }),
 }));
 
 export default useChat;

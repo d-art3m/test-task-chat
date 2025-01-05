@@ -13,10 +13,11 @@ function ChatItem({ _id, firstName, lastName }) {
   const closeDialog = () => setIsDialogOpen(false);
 
   const removeChat = useChat(state => state.removeChat);
+  const setActiveChat = useChat(state => state.setActiveChat);
 
   return (
     <>
-      <div className="chat-item">
+      <div className="chat-item" onClick={() => setActiveChat(_id)}>
         <div className="avatar">
           <FaUser />
         </div>
