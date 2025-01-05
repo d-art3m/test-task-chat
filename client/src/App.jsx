@@ -1,9 +1,12 @@
-function App() {
+import Sidebar from './components/Sidebar.jsx';
+import ChatContainer from './components/ChatContainer.jsx';
 
+function App() {
   return (
-    <>
-      <div>Hello</div>
-    </>
+    <div className="wrapper">
+      <Sidebar />
+      <ChatContainer />
+    </div>
   );
 }
 
