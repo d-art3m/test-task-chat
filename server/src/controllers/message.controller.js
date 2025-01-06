@@ -1,4 +1,5 @@
 import Message from '../models/Message.js';
+import axios from 'axios';
 
 export const getMessages = async (req, res) => {
   const { chatId } = req.params;
@@ -29,3 +30,12 @@ export const sendMessage = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+export const getRandomQuote = async (req, res) => {
+  try {
+    const response = await axios.get(`${process.env.QUOTE_API}/random`);
+    res.status(200).json({ quote: response.data[0].q });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
