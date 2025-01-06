@@ -5,6 +5,6 @@ export const getRandomQuote = async () => {
     const response = await axiosInstance.get('/messages/random');
     return response.data.quote;
   } catch (error) {
-    return error.message;
+    return 'Lorem ipsum dolor sit amet consectetuer';
   }
 }
