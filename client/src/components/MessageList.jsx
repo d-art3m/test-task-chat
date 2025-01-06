@@ -1,4 +1,5 @@
 import MessageItem from './MessageItem.jsx';
+import Preloader from './Preloader.jsx';
 import useChat from '../store/useChat';
 import { useEffect } from 'react';
 import useMessage from '../store/useMessage.js';
@@ -16,7 +17,13 @@ function MessageList() {
     }
   }, [fetchMessages, activeChat]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="message-list">
+        <Preloader />
+      </div>
+    );
+  }
 
   return (
     <div className="message-list">

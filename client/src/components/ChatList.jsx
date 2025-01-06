@@ -3,6 +3,7 @@ import ChatItem from './ChatItem.jsx';
 import { IoAddOutline } from 'react-icons/io5';
 import useChat from '../store/useChat.js';
 import ChatDialog from './ChatDialog.jsx';
+import Preloader from './Preloader.jsx';
 
 function ChatList() {
   const getChats = useChat(state => state.getChats);
@@ -18,7 +19,13 @@ function ChatList() {
     getChats();
   }, [getChats, searchQuery]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="chat-list-wrapper">
+        <Preloader />
+      </div>
+    );
+  }
 
   return (
     <div className="chat-list-wrapper">
