@@ -5,17 +5,18 @@ import useChat from '../store/useChat.js';
 import ChatDialog from './ChatDialog.jsx';
 
 function ChatList() {
-  const fetchChats = useChat(state => state.fetchChats);
+  const getChats = useChat(state => state.getChats);
   const loading = useChat(state => state.loading);
   const chats = useChat(state => state.chats);
+  const searchQuery = useChat(state => state.searchQuery);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const openDialog = () => setIsDialogOpen(true);
   const closeDialog = () => setIsDialogOpen(false);
 
   useEffect(() => {
-    fetchChats();
-  }, [fetchChats]);
+    getChats();
+  }, [getChats, searchQuery]);
 
   if (loading) return <div>Loading...</div>;
 

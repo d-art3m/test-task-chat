@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import axiosInstance from '../utils/axios.js'
+import useChat from './useChat.js';
 
 const useMessage = create(set => ({
   messages: [],
@@ -21,12 +22,17 @@ const useMessage = create(set => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.post(`/messages/${chatId}`, data);
-      set(state => ({ messages: [...state.messages, response.data], loading: false }));
+      if (useChat.getState().activeChat._id === chatId) {
+        set(state => ({ messages: [...state.messages, response.data] }));
+      }
+      set({ loading: false });
     } catch (error) {
       const errorMessage = error.response?.data.error || 'Failed to send message';
       set({ error: errorMessage, loading: false });
     }
   },
+
+  reset: () => set({ messages: [], loading: false, error: null }),
 }));
 
 export default useMessage;

@@ -1,6 +1,10 @@
 import { FaUser } from 'react-icons/fa';
+import useChat from '../store/useChat';
 
 function Header() {
+  const setSearchQuery = useChat(state => state.setSearchQuery);
+  const searchQuery = useChat(state => state.searchQuery);
+
   return (
     <div className="header-wrapper">
       <div className="header-profile">
@@ -13,6 +17,8 @@ function Header() {
         type="text"
         className="search-input"
         placeholder="Search or start new chat"
+        value={searchQuery}
+        onChange={(event) => setSearchQuery(event.target.value)}
       />
     </div>
   );
